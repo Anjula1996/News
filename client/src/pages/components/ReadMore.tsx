@@ -9,7 +9,7 @@ interface ReadMoreProps {
   isReadMore: boolean;
   data: any;
   handleClose: () => void;
-};
+}
 const customStyles = {
   content: {
     top: "50%",
@@ -33,7 +33,8 @@ export const ReadMoreModal: React.FC<ReadMoreProps> = (props) => {
             w-full 
             text-xl 
             font-bold 
-            underline"
+            underline
+            p-2"
           >
             {data.title}
           </p>
@@ -59,7 +60,9 @@ export const ReadMoreModal: React.FC<ReadMoreProps> = (props) => {
             grid 
             grid-cols-1 
             gap-4 
-            place-items-center"
+            place-items-center
+            m-4
+           "
       >
         <img
           src={data?.imageUrl}

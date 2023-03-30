@@ -19,9 +19,10 @@ export const NewsList: React.FC<NewsListProps> = (props) => {
       <div
         className="
         grid 
-        grid-flow-row-dense 
-        grid-cols-4 
-        grid-rows-3 
+        grid-flow-row-dense
+        sm:flow-col
+        md:grid-cols-4 
+        md:grid-rows-3 
         m-2"
       >
         {data.map((news) => {
