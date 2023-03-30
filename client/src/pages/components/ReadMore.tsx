@@ -17,7 +17,9 @@ const customStyles = {
     right: "50%",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -57%)",
+    width: "75%",
+    height: "75%",
   },
 };
 export const ReadMoreModal: React.FC<ReadMoreProps> = (props) => {
@@ -25,8 +27,8 @@ export const ReadMoreModal: React.FC<ReadMoreProps> = (props) => {
   return (
     <Modal isOpen={isReadMore} style={customStyles}>
       {/* header */}
-      <div className="flex items-center">
-        <div>
+      <div>
+        <div className="lg:mb-0 md:mb-0 mb-16">
           <p
             className="
             h-14 
