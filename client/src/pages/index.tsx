@@ -15,14 +15,16 @@ const NEWS_CATEGORIES: news_category_type[] = [
   { name: "Technology", key: "technology" },
 ];
 
+//basic URL
+const baseURL: string = "https://inshorts.deta.dev/news";
+
 export const Main: React.FC = () => {
   const [categoryKey, setCategoryKey] = useState<string>("all");
-  const [categoryName, setCategoryName] = useState<string>("All");
   const [news, setNews] = useState<any[]>([]);
 
   //filter news according to the on click event in the category button default is 'all'
   useEffect(() => {
-    fetch(`https://inshorts.deta.dev/news?category=${categoryKey}`)
+    fetch(`${baseURL}?category=${categoryKey}`)
       .then((response) => response.json())
       .then((data) => {
         if (categoryKey === data?.category) {
@@ -33,16 +35,15 @@ export const Main: React.FC = () => {
   }, [categoryKey]);
 
   return (
-    <div className="m-8">
+    <div className="mr-8 ml-8">
       <h5>Daily news</h5>
       {NEWS_CATEGORIES.map((category: news_category_type) => {
         return (
           <button
-            className="m-4 bg-[#B9B7C6] pl-4 pr-4 rounded-lg hover:bg-[#7D6DE6]"
+            className="m-4 bg-[#B9B7C6] pl-4 pr-4 rounded-lg hover:bg-[#7D6DE6] focus:bg-[#7D6DE6]"
             key={category.key}
             onClick={() => {
               setCategoryKey(category.key);
-              setCategoryName(category.name);
               setNews([]);
             }}
           >
@@ -50,11 +51,7 @@ export const Main: React.FC = () => {
           </button>
         );
       })}
-      {news ? (
-        <NewsList data={news} categoryName={categoryName} />
-      ): (
-        <p>Loading...!</p>
-      )}
+      {news ? <NewsList data={news} /> : <p>Loading...!</p>}
     </div>
   );
 };
