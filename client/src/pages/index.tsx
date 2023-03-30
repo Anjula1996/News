@@ -9,6 +9,7 @@ import { NewsList } from "./components/NewsList";
 
 //news category list
 const NEWS_CATEGORIES: news_category_type[] = [
+  { name: "All", key: "all" },
   { name: "Automobile", key: "automobile" },
   { name: "Science", key: "science" },
   { name: "Sports", key: "sport" },
@@ -40,29 +41,14 @@ export const Main: React.FC = () => {
     <div className="mr-8 ml-8">
       <h5>Daily news</h5>
       <div className="ml-4">
-        <button
-          className={`
-              m-4 p-1 pl-2 pr-2
-              rounded-lg 
-              bg-[${categoryKey === "all" ? "#2F8B97" : "#ffffff"}]
-              text-[${categoryKey === "all" ? "#ffffff" : "#000"}]
-              hover:text-[#1E9FF7]
-              focus:bg-[#2F8B97]
-              focus:text-[#ffffff]`}
-          key={"all"}
-          onClick={() => {
-            setCategoryKey("all");
-            setNews([]);
-          }}
-        >
-          All
-        </button>
         {NEWS_CATEGORIES.map((category: news_category_type) => {
           return (
             <button
               className={`
               m-4 p-1 pl-2 pr-2
               rounded-lg 
+              bg-[${categoryKey === category.key ? "#2F8B97" : "#ffffff"}]
+              text-[${categoryKey === category.key ? "#ffffff" : "#000"}]
               hover:text-[#1E9FF7]
               focus:bg-[#2F8B97]
               focus:text-[#ffffff]`}
