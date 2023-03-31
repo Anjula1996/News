@@ -3,7 +3,8 @@
  * description: dispaly news list in a grid view
  */
 
-import React from "react";
+import React, { useState } from "react";
+import { ReadMoreModal } from "./ReadMore";
 
 interface NewsListProps {
   data: any[];
@@ -11,14 +12,17 @@ interface NewsListProps {
 
 export const NewsList: React.FC<NewsListProps> = (props) => {
   const { data } = props;
+  const [isReadMore, setIsReadMore] = useState<boolean>(false);
+  const [selectedNews, setSelectedNews] = useState<any>({});
   return (
     <div className="m-2">
       <div
         className="
         grid 
-        grid-flow-row-dense 
-        grid-cols-4 
-        grid-rows-3 
+        grid-flow-row-dense
+        sm:flow-col
+        md:grid-cols-4 
+        md:grid-rows-3 
         m-2"
       >
         {data.map((news) => {
@@ -42,6 +46,10 @@ export const NewsList: React.FC<NewsListProps> = (props) => {
                   border-2 
                   hover:border-[#0D5CD5] 
                   p-1 ml-1"
+                onClick={() => {
+                  setIsReadMore(true);
+                  setSelectedNews(news);
+                }}
               >
                 Read more
               </button>
@@ -49,6 +57,15 @@ export const NewsList: React.FC<NewsListProps> = (props) => {
           );
         })}
       </div>
+      {isReadMore && (
+        <ReadMoreModal
+          isReadMore={isReadMore}
+          data={selectedNews}
+          handleClose={() => {
+            setIsReadMore(false);
+          }}
+        />
+      )}
     </div>
   );
 };
